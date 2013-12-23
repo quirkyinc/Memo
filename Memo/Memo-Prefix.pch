@@ -1,0 +1,22 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
+
+#define MemoDesignatedInitializer(__SEL__)  __attribute__((unavailable("Invoke the designated initializer `" # __SEL__ "` instead.")))
+
+#if !defined(weakify) && !defined(strongify)
+#define weakify(o) try {} @finally {} \
+__weak typeof(o) nf_weak_ ## o = o
+
+#define strongify(o) try {} @finally {} \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Wshadow\"") \
+typeof(nf_weak_ ## o) o = nf_weak_ ## o \
+_Pragma("clang diagnostic pop")
+#endif
