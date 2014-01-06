@@ -21,7 +21,7 @@
 
 + (instancetype)memoWithTarget:(id)target block:(id (^)(id target, NSString*))block;
 
-- (id)init MemoDesignatedInitializer(initWithTarget:block:);
+//- (id)init MemoDesignatedInitializer(initWithTarget:block:);
 - (instancetype)initWithTarget:(id)target block:(id (^)(id target, NSString*))block;
 
 - (void)invalidateWithKeyPath:(NSString*)keyPath;
